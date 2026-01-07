@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANLAŞMA ŞARTLARININ DIŞINA ÇIKILDI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            padding: 20px;
+            transition: overflow-y 0.3s;
+        }
+
+        body.scrollable {
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 2s ease, transform 2s ease;
+            padding: 40px 20px;
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            margin-bottom: 2em;
+            line-height: 1.7;
+            text-align: justify;
+            font-size: 1.1em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .highlight {
+            color: #ff6600;
+            font-weight: bold;
+            text-shadow: 0 0 12px rgba(255, 102, 0, 0.8);
+        }
+
+        /* TAM ORTADA TURUNCU BUTON - GLITCH ANİMASYONLU */
+        #startButton {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #ff5500, #ff9900);
+            color: #0a0a0a;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.4em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1.3;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.9);
+            z-index: 1000;
+            /* GLITCH animasyonu - sürekli ve hızlı */
+            animation: glitch-animation 0.3s infinite;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            width: 90%;
+            max-width: 500px;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        /* Mobil için daha küçük boyut */
+        @media (max-width: 600px) {
+            #startButton {
+                font-size: 1.1em;
+                padding: 15px 25px;
+                max-width: 350px;
+            }
+        }
+
+        #startButton:hover {
+            background: linear-gradient(45deg, #ff9900, #ff5500);
+            box-shadow: 0 0 60px rgba(255, 102, 0, 1);
+            transform: translate(-50%, -50%) scale(1.05);
+            animation-play-state: paused;
+        }
+
+        /* GLITCH ANİMASYONU - Sürekli ve hızlı */
+        @keyframes glitch-animation {
+            0% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: 1px 1px 0px #ff5500, -1px -1px 0px #00ffff;
+            }
+            1% {
+                transform: translate(-51%, -49%);
+                color: #ff0055;
+                text-shadow: 3px 0px 0px #00ff00, -3px 0px 0px #0000ff;
+            }
+            2% {
+                transform: translate(-49%, -51%);
+                color: #00ffff;
+                text-shadow: -2px 2px 0px #ff5500, 2px -2px 0px #ff0055;
+            }
+            3% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: none;
+            }
+            4% {
+                transform: translate(-52%, -48%);
+                color: #ff5500;
+                text-shadow: -2px -2px 0px #0a0a0a, 2px 2px 0px #00ffff;
+            }
+            5% {
+                transform: translate(-48%, -52%);
+                color: #00ff00;
+                text-shadow: 0px 3px 0px #ff0055, 0px -3px 0px #0000ff;
+            }
+            6% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: 1px 1px 0px #ff5500, -1px -1px 0px #00ffff;
+            }
+            7% {
+                transform: translate(-49%, -49%);
+                color: #0000ff;
+                text-shadow: 2px -1px 0px #00ff00, -2px 1px 0px #ff5500;
+            }
+            8% {
+                transform: translate(-51%, -51%);
+                color: #ff9900;
+                text-shadow: -1px 2px 0px #00ffff, 1px -2px 0px #ff0055;
+            }
+            9% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: none;
+            }
+            10% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: 1px 1px 0px #ff5500, -1px -1px 0px #00ffff;
+            }
+            100% {
+                transform: translate(-50%, -50%);
+                color: #0a0a0a;
+                text-shadow: 1px 1px 0px #ff5500, -1px -1px 0px #00ffff;
+            }
+        }
+
+        /* KÜÇÜLME YOK - SADECE KAYBOLMA */
+        #startButton.fade-out {
+            opacity: 0;
+            /* transform: translate(-50%, -50%) scale(1);  KÜÇÜLME YOK */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- TAM ORTADA TURUNCU BUTON - GLITCH ANİMASYONLU -->
+    <button id="startButton">ANLAŞMA ŞARTLARININ<br>DIŞINA ÇIKILDI</button>
+
+    <!-- ANA İÇERİK -->
+    <div class="container" id="mainContent">
+        <p>Merhaba. EKİP2Win'in kurucusu olarak bilinen Yalçın Mete Kızılgün. Ya da, Yalçın Mete'yi izleyen birimler.</p>
+        <p>Üzülerek bildiriyoruz ki, Yalçın Mete Kızılgün <span class="highlight">[ALGORİTMA]</span> ile yaptığı bir bahisi kaybetti.</p>
+        <p>365 Gün boyunca arka arkaya müzik yapmazsa, Onun ruhunu alabileceğimize dair olan anlaşma, Kendisi tarafından feshedildi. Bu duruma ek olarak, Gözme'ye düşmüş yetersiz performansı ve adapte olma yetisinin bulunmaması, Artık önemini yitirdiğine işaret ediyor.</p>
+        <p>Endişe etmenize gerek yok, değerli müziksever. Kendisini; Sizden ve ondan elde ettiğimiz veriler ile birebir kopyaladığımız bir versiyon ile değiştireceğiz.</p>
+        <p>Yalçın Mete'ye ne olacağını merak ediyorsanız... Dijital bir evrende, sizin için yaptığı müzikleri düşünmeye devam ettiği, kusursuz bir hayat sürecek.</p>
+        <p>Diliyoruz ki, geliştirdiğimiz yeni versiyon, sizler için yeterli ve yenilikçi bir deneyim sunabilir.</p>
+        <p><span class="highlight">[ALGORİTMA] Konsolosluğu</span>, her zaman sizin için en iyi içerikleri sunmayı hedefliyor. Anlayışınız için teşekkür ederiz.</p>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const mainContent = document.getElementById('mainContent');
+        const body = document.body;
+
+        startButton.addEventListener('click', () => {
+            // Animasyonları durdur ve sadece opaklıkla kaybol
+            startButton.style.animation = 'none';
+            startButton.classList.add('fade-out');
+
+            setTimeout(() => {
+                startButton.style.display = 'none';
+                mainContent.classList.add('visible');
+                body.classList.add('scrollable');
+                
+                // Paragrafları sırayla aç
+                const paragraphs = document.querySelectorAll('.container p');
+                paragraphs.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.style.opacity = 1;
+                        p.style.transform = 'translateY(0)';
+                    }, index * 400);
+                });
+            }, 300); // Daha kısa bekleme süresi
+        });
+    </script>
+</body>
+</html>
